@@ -1,6 +1,5 @@
 package com.github.paulsiberian.armus.workload.model.errandcard;
 
-import java.util.List;
 import java.util.Objects;
 
 public class ECDiscipline {
@@ -8,8 +7,8 @@ public class ECDiscipline {
     private String name;
     private String academicGroup;
     private int studentsCount;
-    private List<Double> fallSemesterAmountHours;
-    private List<Double> springSemesterAmountHours;
+    private double[] fallSemesterAmountHours;
+    private double[] springSemesterAmountHours;
 
     public ECDiscipline() {
     }
@@ -20,7 +19,7 @@ public class ECDiscipline {
         this.studentsCount = studentsCount;
     }
 
-    public ECDiscipline(String name, String academicGroup, int studentsCount, List<Double> fallSemesterAmountHours, List<Double> springSemesterAmountHours) {
+    public ECDiscipline(String name, String academicGroup, int studentsCount, double[] fallSemesterAmountHours, double[] springSemesterAmountHours) {
         this(name, academicGroup, studentsCount);
         this.fallSemesterAmountHours = fallSemesterAmountHours;
         this.springSemesterAmountHours = springSemesterAmountHours;
@@ -53,20 +52,20 @@ public class ECDiscipline {
         return this;
     }
 
-    public List<Double> getFallSemesterAmountHours() {
+    public double[] getFallSemesterAmountHours() {
         return fallSemesterAmountHours;
     }
 
-    public ECDiscipline setFallSemesterAmountHours(List<Double> fallSemesterAmountHours) {
+    public ECDiscipline setFallSemesterAmountHours(double[] fallSemesterAmountHours) {
         this.fallSemesterAmountHours = fallSemesterAmountHours;
         return this;
     }
 
-    public List<Double> getSpringSemesterAmountHours() {
+    public double[] getSpringSemesterAmountHours() {
         return springSemesterAmountHours;
     }
 
-    public ECDiscipline setSpringSemesterAmountHours(List<Double> springSemesterAmountHours) {
+    public ECDiscipline setSpringSemesterAmountHours(double[] springSemesterAmountHours) {
         this.springSemesterAmountHours = springSemesterAmountHours;
         return this;
     }

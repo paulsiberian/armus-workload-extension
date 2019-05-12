@@ -3,8 +3,6 @@ package com.github.paulsiberian.armus.workload.model;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class WLDiscipline {
@@ -16,7 +14,7 @@ public class WLDiscipline {
     private int semester;
     private int studentsCount;
     private String  educator;
-    private List<Double> amountHours;
+    private double[] amountHours;
 
     public WLDiscipline() {
     }
@@ -60,12 +58,14 @@ public class WLDiscipline {
 
         educator = stringValue(sheet.getRow(59).getCell(educatorCol));
 
-        amountHours = new ArrayList<>();
+        int size = endRow - beginRow + 1;
+
+        amountHours = new double[size];
 
         for (int i = beginRow; i <= endRow; i++) {
             double b = doubleValue(sheet.getRow(i).getCell(budgetCol));
             double c = doubleValue(sheet.getRow(i).getCell(commercialCol));
-            amountHours.add(b + c);
+            amountHours[i - beginRow] = b + c;
         }
     }
 
@@ -146,11 +146,11 @@ public class WLDiscipline {
         this.educator = educator;
     }
 
-    public List<Double> getAmountHours() {
+    public double[] getAmountHours() {
         return amountHours;
     }
 
-    public void setAmountHours(List<Double> amountHours) {
+    public void setAmountHours(double[] amountHours) {
         this.amountHours = amountHours;
     }
 

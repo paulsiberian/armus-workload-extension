@@ -1,6 +1,7 @@
 package com.github.paulsiberian.armus.workload.model.errandcard;
 
 import com.github.paulsiberian.armus.workload.model.AbstractWorkbookParser;
+import com.github.paulsiberian.armus.workload.util.ErrandCardUtil;
 import com.github.paulsiberian.armus.workload.util.WorkbookUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -19,6 +20,7 @@ public class ECParser extends AbstractWorkbookParser {
     private String academicYear;
     private int rateAmount;
     private List<ECDiscipline> disciplines;
+    private int disciplineTypeCount;
 
     public ECParser() {
     }
@@ -26,14 +28,42 @@ public class ECParser extends AbstractWorkbookParser {
     public ECParser(String path, ECTemplate template) {
         super(path);
         this.template = template;
+        disciplineTypeCount = template.getDisciplineTypes().size();
     }
 
-    private List<Double> readAmountHours(Row row, int columnIndex) {
-        List<Double> amountHours = new ArrayList<>();
-        for (int i = columnIndex; i < ECTemplate.Semester.DISCIPLINE_TYPE_COUNT; i++) {
-            amountHours.add(row.getCell(i).getNumericCellValue());
+    public ECParser(ECTemplate template) {
+        this(template.getPath(), template);
+    }
+
+    private double[] readAmountHours(Row row, int columnIndex) {
+        double[] amountHours = new double[disciplineTypeCount];
+        int j = 0;
+        for (int i = columnIndex; j < disciplineTypeCount; i++, j++) {
+            amountHours[j] = row.getCell(i).getNumericCellValue();
         }
         return amountHours;
+    }
+
+    private void writeValue(Sheet sheet, ECTemplate.Cell tCell, String value) {
+        writeValue(sheet, tCell.getRowIndex(), tCell.getColumnIndex(), value);
+    }
+
+    private void writeValue(Sheet sheet, ECTemplate.Cell tCell, Double value) {
+        writeValue(sheet, tCell.getRowIndex(), tCell.getColumnIndex(), value);
+    }
+
+    private void writeValue(Sheet sheet, int row, int col, Double value) {
+        sheet
+                .getRow(row)
+                .getCell(col)
+                .setCellValue(value);
+    }
+
+    private void writeValue(Sheet sheet, int row, int col, String value) {
+        sheet
+                .getRow(row)
+                .getCell(col)
+                .setCellValue(value);
     }
 
     @Override
@@ -68,7 +98,7 @@ public class ECParser extends AbstractWorkbookParser {
 
         disciplines = new ArrayList<>();
         ECTemplate.Table table = template.getTable();
-        int beginRow = table.getBeginRow();
+        int beginRow = table.getStartRow();
 
         while (!sheet.getRow(beginRow).getCell(0).getStringCellValue().trim().isEmpty()
                 || !sheet.getRow(beginRow).getCell(0).getStringCellValue().trim().equals("Итого:")) {
@@ -79,18 +109,44 @@ public class ECParser extends AbstractWorkbookParser {
                     row.getCell(table.getDisciplineColumn()).getStringCellValue().trim(),
                     row.getCell(table.getAcademicGroupColumn()).getStringCellValue().trim(),
                     (int) row.getCell(table.getStudentsCountColumn()).getNumericCellValue(),
-                    readAmountHours(row, table.getFallSemester().getColumnIndex()),
-                    readAmountHours(row, table.getSpringSemester().getColumnIndex())
+                    readAmountHours(row, table.getFallSemester()),
+                    readAmountHours(row, table.getSpringSemester())
             ));
 
             beginRow++;
-
         }
-
     }
 
     public void save() {
         workbookLoad(getPath());
+        Sheet sheet = getWorkbook().getSheetAt(0);
+
+        writeValue(sheet, template.getInstituteCell(), institute);
+        writeValue(sheet, template.getCathedraCell(), cathedra);
+        writeValue(sheet, template.getEmployeeCell(), educator);
+        writeValue(sheet, template.getAcademicYearCell(), academicYear);
+        writeValue(sheet, template.getRateAmountCell(), (double) rateAmount);
+
+        ECTemplate.Table table = template.getTable();
+
+        int disciplineCount = disciplines.size();
+        int beginRowNum = table.getStartRow();
+        int countRows = table.getCountRows();
+
+        ErrandCardUtil.shiftTableRows(sheet, disciplineCount, beginRowNum, countRows, template.getFooterRow());
+
+        for (int i = 0; i < disciplineCount; i++) {
+            ECDiscipline discipline = disciplines.get(i);
+            Row row = sheet.getRow(i + beginRowNum);
+            row.getCell(table.getDisciplineColumn()).setCellValue(discipline.getName());
+            row.getCell(table.getAcademicGroupColumn()).setCellValue(discipline.getAcademicGroup());
+            row.getCell(table.getStudentsCountColumn()).setCellValue(discipline.getStudentsCount());
+            for (int j = 0; j < disciplineTypeCount; j++) {
+                row.getCell(j + table.getFallSemester()).setCellValue(discipline.getFallSemesterAmountHours()[j]);
+                row.getCell(j + table.getSpringSemester()).setCellValue(discipline.getSpringSemesterAmountHours()[j]);
+            }
+        }
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         String currentDate = dateFormat.format(new Date());
         WorkbookUtil.write(getWorkbook(), educator + " от " + currentDate + ".xlsx");
@@ -150,6 +206,7 @@ public class ECParser extends AbstractWorkbookParser {
 
     public void setTemplate(ECTemplate template) {
         this.template = template;
+        disciplineTypeCount = template.getDisciplineTypes().size();
     }
 
 }

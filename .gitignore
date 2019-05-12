@@ -11,3 +11,5 @@
 .idea/**/dbnavigator.xml
 out/
 target/
+*.xls
+*.xlsx

@@ -1,15 +1,33 @@
 package com.github.paulsiberian.armus.workload.model.errandcard;
 
+import java.util.List;
+
 public class ECTemplate {
 
+    private String path;
     private Cell instituteCell;
     private Cell cathedraCell;
     private Cell employeeCell;
     private Cell academicYearCell;
     private Cell rateAmountCell;
     private Table table;
+    private int footerRow;
+    private List<int[]> disciplineTypes;
 
     public ECTemplate() {
+    }
+
+    public ECTemplate(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public ECTemplate setPath(String path) {
+        this.path = path;
+        return this;
     }
 
     public Cell getInstituteCell() {
@@ -66,12 +84,35 @@ public class ECTemplate {
         return this;
     }
 
-    public class Cell {
+    public int getFooterRow() {
+        return footerRow;
+    }
+
+    public ECTemplate setFooterRow(int footerRow) {
+        this.footerRow = footerRow;
+        return this;
+    }
+
+    public List<int[]> getDisciplineTypes() {
+        return disciplineTypes;
+    }
+
+    public ECTemplate setDisciplineTypes(List<int[]> disciplineTypes) {
+        this.disciplineTypes = disciplineTypes;
+        return this;
+    }
+
+    public static class Cell {
 
         private int rowIndex;
         private int columnIndex;
 
         public Cell() {
+        }
+
+        public Cell(int rowIndex, int columnIndex) {
+            this.rowIndex = rowIndex;
+            this.columnIndex = columnIndex;
         }
 
         public int getRowIndex() {
@@ -93,27 +134,27 @@ public class ECTemplate {
         }
     }
 
-    public class Table {
+    public static class Table {
 
-        private int beginRow;
-        private int endRow;
+        private int startRow;
+        private int countRows;
         private int disciplineColumn;
         private int academicGroupColumn;
         private int studentsCountColumn;
-        private Semester fallSemester;
-        private Semester springSemester;
+        private int fallSemester;
+        private int springSemester;
 
-        public Table(int beginRow, int endRow) {
-            this.beginRow = beginRow;
-            this.endRow = endRow;
+        public Table(int startRow, int countRows) {
+            this.startRow = startRow;
+            this.countRows = countRows;
         }
 
-        public int getBeginRow() {
-            return beginRow;
+        public int getStartRow() {
+            return startRow;
         }
 
-        public int getEndRow() {
-            return endRow;
+        public int getCountRows() {
+            return countRows;
         }
 
         public int getDisciplineColumn() {
@@ -128,11 +169,11 @@ public class ECTemplate {
             return studentsCountColumn;
         }
 
-        public Semester getFallSemester() {
+        public int getFallSemester() {
             return fallSemester;
         }
 
-        public Semester getSpringSemester() {
+        public int getSpringSemester() {
             return springSemester;
         }
 
@@ -151,157 +192,13 @@ public class ECTemplate {
             return this;
         }
 
-        public Table setFallSemester(Semester fallSemester) {
+        public Table setFallSemester(int fallSemester) {
             this.fallSemester = fallSemester;
             return this;
         }
 
-        public Table setSpringSemester(Semester springSemester) {
+        public Table setSpringSemester(int springSemester) {
             this.springSemester = springSemester;
-            return this;
-        }
-    }
-
-    public class Semester {
-
-        public static final int DISCIPLINE_TYPE_COUNT = 13;
-        private int columnIndex;
-        private int lecturesColumn;
-        private int practicalLessonsColumn;
-        private int laboratoryWorksColumn;
-        private int selfControlledWorkColumn;
-        private int consultationsColumn;
-        private int scoresColumn;
-        private int examsColumn;
-        private int courseWorkColumn;
-        private int practiceColumn;
-        private int finalQualifyingWorkColumn;
-        private int stateExaminationCommisionColumn;
-        private int guidanceMasterStudentsColumn;
-        private int visitingLessonsColumn;
-
-        public Semester(int columnIndex) {
-            this.columnIndex = columnIndex;
-        }
-
-        public int getColumnIndex() {
-            return columnIndex;
-        }
-
-        public int getLecturesColumn() {
-            return lecturesColumn;
-        }
-
-        public int getPracticalLessonsColumn() {
-            return practicalLessonsColumn;
-        }
-
-        public int getLaboratoryWorksColumn() {
-            return laboratoryWorksColumn;
-        }
-
-        public int getSelfControlledWorkColumn() {
-            return selfControlledWorkColumn;
-        }
-
-        public int getConsultationsColumn() {
-            return consultationsColumn;
-        }
-
-        public int getScoresColumn() {
-            return scoresColumn;
-        }
-
-        public int getExamsColumn() {
-            return examsColumn;
-        }
-
-        public int getCourseWorkColumn() {
-            return courseWorkColumn;
-        }
-
-        public int getPracticeColumn() {
-            return practiceColumn;
-        }
-
-        public int getFinalQualifyingWorkColumn() {
-            return finalQualifyingWorkColumn;
-        }
-
-        public int getStateExaminationCommisionColumn() {
-            return stateExaminationCommisionColumn;
-        }
-
-        public int getGuidanceMasterStudentsColumn() {
-            return guidanceMasterStudentsColumn;
-        }
-
-        public int getVisitingLessonsColumn() {
-            return visitingLessonsColumn;
-        }
-
-        public Semester setLecturesColumn(int lecturesColumn) {
-            this.lecturesColumn = lecturesColumn;
-            return this;
-        }
-
-        public Semester setPracticalLessonsColumn(int practicalLessonsColumn) {
-            this.practicalLessonsColumn = practicalLessonsColumn;
-            return this;
-        }
-
-        public Semester setLaboratoryWorksColumn(int laboratoryWorksColumn) {
-            this.laboratoryWorksColumn = laboratoryWorksColumn;
-            return this;
-        }
-
-        public Semester setSelfControlledWorkColumn(int selfControlledWorkColumn) {
-            this.selfControlledWorkColumn = selfControlledWorkColumn;
-            return this;
-        }
-
-        public Semester setConsultationsColumn(int consultationsColumn) {
-            this.consultationsColumn = consultationsColumn;
-            return this;
-        }
-
-        public Semester setScoresColumn(int scoresColumn) {
-            this.scoresColumn = scoresColumn;
-            return this;
-        }
-
-        public Semester setExamsColumn(int examsColumn) {
-            this.examsColumn = examsColumn;
-            return this;
-        }
-
-        public Semester setCourseWorkColumn(int courseWorkColumn) {
-            this.courseWorkColumn = courseWorkColumn;
-            return this;
-        }
-
-        public Semester setPracticeColumn(int practiceColumn) {
-            this.practiceColumn = practiceColumn;
-            return this;
-        }
-
-        public Semester setFinalQualifyingWorkColumn(int finalQualifyingWorkColumn) {
-            this.finalQualifyingWorkColumn = finalQualifyingWorkColumn;
-            return this;
-        }
-
-        public Semester setStateExaminationCommisionColumn(int stateExaminationCommisionColumn) {
-            this.stateExaminationCommisionColumn = stateExaminationCommisionColumn;
-            return this;
-        }
-
-        public Semester setGuidanceMasterStudentsColumn(int guidanceMasterStudentsColumn) {
-            this.guidanceMasterStudentsColumn = guidanceMasterStudentsColumn;
-            return this;
-        }
-
-        public Semester setVisitingLessonsColumn(int visitingLessonsColumn) {
-            this.visitingLessonsColumn = visitingLessonsColumn;
             return this;
         }
     }
