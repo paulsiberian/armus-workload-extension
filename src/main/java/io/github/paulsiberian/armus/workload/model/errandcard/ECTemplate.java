@@ -1,6 +1,11 @@
+/*
+ * Copyright (c) Храпунов П. Н., 2019.
+ */
+
 package io.github.paulsiberian.armus.workload.model.errandcard;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ECTemplate {
 
@@ -200,6 +205,25 @@ public class ECTemplate {
         public Table setSpringSemester(int springSemester) {
             this.springSemester = springSemester;
             return this;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Table table = (Table) o;
+            return startRow == table.startRow &&
+                    countRows == table.countRows &&
+                    disciplineColumn == table.disciplineColumn &&
+                    academicGroupColumn == table.academicGroupColumn &&
+                    studentsCountColumn == table.studentsCountColumn &&
+                    fallSemester == table.fallSemester &&
+                    springSemester == table.springSemester;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(startRow, countRows, disciplineColumn, academicGroupColumn, studentsCountColumn, fallSemester, springSemester);
         }
     }
 }

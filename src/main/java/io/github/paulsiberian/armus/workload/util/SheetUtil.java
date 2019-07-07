@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Храпунов П. Н., 2019.
+ */
+
 package io.github.paulsiberian.armus.workload.util;
 
 import org.apache.poi.ss.formula.FormulaParser;

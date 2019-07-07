@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Храпунов П. Н., 2019.
+ */
+
 package io.github.paulsiberian.armus.workload.model;
 
 import io.github.paulsiberian.armus.workload.util.WorkbookUtil;

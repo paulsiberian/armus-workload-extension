@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Храпунов П. Н., 2019.
+ */
+
 package io.github.paulsiberian.armus.workload.model;
 
 import org.apache.poi.ss.usermodel.Cell;
