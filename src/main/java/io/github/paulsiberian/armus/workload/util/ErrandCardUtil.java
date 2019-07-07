@@ -1,15 +1,13 @@
-package com.github.paulsiberian.armus.workload.util;
+package io.github.paulsiberian.armus.workload.util;
 
-import com.github.paulsiberian.armus.workload.model.errandcard.ECTemplate;
+import io.github.paulsiberian.armus.workload.model.errandcard.ECTemplate;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class ErrandCardUtil {
 

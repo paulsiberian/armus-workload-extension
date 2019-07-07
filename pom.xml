@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.paulsiberian.armus</groupId>
+  <groupId>io.github.paulsiberian.armus</groupId>
   <artifactId>armus-workload-core</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
@@ -12,8 +12,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <github.global.server>github</github.global.server>
     <!--  Dependency version  -->
     <junit.version>5.5.0-M1</junit.version>
@@ -26,6 +26,23 @@
   </properties>
 
   <dependencies>
+    <!-- ARMUS API -->
+    <dependency>
+      <groupId>io.github.paulsiberian.armus</groupId>
+      <artifactId>armus-api</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <!-- OpenJFX Linux -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>12.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-fxml</artifactId>
+      <version>12.0.1</version>
+    </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -41,11 +58,6 @@
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
       <version>${poi.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.github.paulsiberian.armus</groupId>
-      <artifactId>armus-db</artifactId>
-      <version>${armus-db.version}</version>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
@@ -101,7 +113,7 @@
   <repositories>
     <repository>
       <id>paulsiberian-mvn-repo</id>
-      <url>https://rowIndex.github.com/paulsiberian/paulsiberian.github.io/mvn-repo</url>
+      <url>https://rowIndex.github.com/paulsiberian/armus-api/mvn-repo</url>
       <snapshots>
         <enabled>true</enabled>
         <updatePolicy>always</updatePolicy>

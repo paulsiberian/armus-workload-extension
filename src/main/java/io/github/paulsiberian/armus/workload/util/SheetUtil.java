@@ -1,4 +1,4 @@
-package com.github.paulsiberian.armus.workload.util;
+package io.github.paulsiberian.armus.workload.util;
 
 import org.apache.poi.ss.formula.FormulaParser;
 import org.apache.poi.ss.formula.FormulaRenderer;

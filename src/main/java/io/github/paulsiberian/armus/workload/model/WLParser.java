@@ -1,6 +1,6 @@
-package com.github.paulsiberian.armus.workload.model;
+package io.github.paulsiberian.armus.workload.model;
 
-import com.github.paulsiberian.armus.database.entitie.Employee;
+import io.github.paulsiberian.armus.api.database.Employee;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class WLParser extends AbstractWorkbookParser {
     }
 
     public List<WLDiscipline> getDisciplinesByEducator(Employee educator) {
-        String name = educator.getSurname() + " " + educator.initials();
+        String name = educator.getPerson().getSurname() + " " + educator.getPerson().initials();
         return getDisciplinesByEducator(name);
     }
 

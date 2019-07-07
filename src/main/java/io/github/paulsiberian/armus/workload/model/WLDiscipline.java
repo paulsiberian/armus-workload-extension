@@ -1,4 +1,4 @@
-package com.github.paulsiberian.armus.workload.model;
+package io.github.paulsiberian.armus.workload.model;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;

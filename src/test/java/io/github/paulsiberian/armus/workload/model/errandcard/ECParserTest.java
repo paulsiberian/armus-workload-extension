@@ -1,16 +1,13 @@
-package com.github.paulsiberian.armus.workload.model.errandcard;
+package io.github.paulsiberian.armus.workload.model.errandcard;
 
-import com.github.paulsiberian.armus.workload.model.WLDiscipline;
-import com.github.paulsiberian.armus.workload.model.WLParser;
-import com.github.paulsiberian.armus.workload.model.WLSheet;
-import com.github.paulsiberian.armus.workload.util.ErrandCardUtil;
+import io.github.paulsiberian.armus.workload.model.WLDiscipline;
+import io.github.paulsiberian.armus.workload.model.WLParser;
+import io.github.paulsiberian.armus.workload.util.ErrandCardUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 class ECParserTest {

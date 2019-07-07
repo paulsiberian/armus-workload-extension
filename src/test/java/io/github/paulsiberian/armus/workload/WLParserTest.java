@@ -1,8 +1,8 @@
-package com.github.paulsiberian.armus.workload;
+package io.github.paulsiberian.armus.workload;
 
-import com.github.paulsiberian.armus.workload.model.WLDiscipline;
-import com.github.paulsiberian.armus.workload.model.WLParser;
-import com.github.paulsiberian.armus.workload.model.WLSheet;
+import io.github.paulsiberian.armus.workload.model.WLDiscipline;
+import io.github.paulsiberian.armus.workload.model.WLParser;
+import io.github.paulsiberian.armus.workload.model.WLSheet;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.github.paulsiberian.armus.workload.model;
+package io.github.paulsiberian.armus.workload.model;
 
 public interface IParser {
     void parse();

@@ -1,8 +1,8 @@
-package com.github.paulsiberian.armus.workload.model.errandcard;
+package io.github.paulsiberian.armus.workload.model.errandcard;
 
-import com.github.paulsiberian.armus.workload.model.AbstractWorkbookParser;
-import com.github.paulsiberian.armus.workload.util.ErrandCardUtil;
-import com.github.paulsiberian.armus.workload.util.WorkbookUtil;
+import io.github.paulsiberian.armus.workload.model.AbstractWorkbookParser;
+import io.github.paulsiberian.armus.workload.util.ErrandCardUtil;
+import io.github.paulsiberian.armus.workload.util.WorkbookUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 

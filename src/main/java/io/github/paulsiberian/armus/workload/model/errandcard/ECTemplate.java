@@ -1,4 +1,4 @@
-package com.github.paulsiberian.armus.workload.model.errandcard;
+package io.github.paulsiberian.armus.workload.model.errandcard;
 
 import java.util.List;
 

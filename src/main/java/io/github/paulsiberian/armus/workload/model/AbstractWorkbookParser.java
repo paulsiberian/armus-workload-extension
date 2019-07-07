@@ -1,6 +1,6 @@
-package com.github.paulsiberian.armus.workload.model;
+package io.github.paulsiberian.armus.workload.model;
 
-import com.github.paulsiberian.armus.workload.util.WorkbookUtil;
+import io.github.paulsiberian.armus.workload.util.WorkbookUtil;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.IOException;
